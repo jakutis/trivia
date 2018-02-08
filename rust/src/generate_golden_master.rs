@@ -1,14 +1,8 @@
-#[macro_use]
-extern crate serde_derive;
+extern crate trivia;
 extern crate serde_json;
 
+use trivia::Execution;
 use std::process::Command;
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Execution {
-  seed: usize,
-  output: String
-}
 
 fn main() {
   for seed in 0..10 {

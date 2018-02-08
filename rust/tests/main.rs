@@ -1,17 +1,11 @@
-#[macro_use]
-extern crate serde_derive;
 extern crate serde_json;
+extern crate trivia;
 
 use std::process::Command;
 use std::io::prelude::*;
 use std::io::BufReader;
 use std::fs::File;
-
-#[derive(Debug, Serialize, Deserialize)]
-struct Execution {
-  seed: usize,
-  output: String
-}
+use trivia::Execution;
 
 #[test]
 fn it_works() {
