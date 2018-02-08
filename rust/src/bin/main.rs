@@ -10,7 +10,7 @@ fn main() {
   let seed = args[1].parse::<usize>().unwrap();
   let mut rng: StdRng = SeedableRng::from_seed(&[seed] as &[_]);
   let mut not_a_winner: bool;
-  let mut game = Game::default();
+  let mut game = Game::default(Box::new(|line: String| {println!("{}", line);}));
   game.add("Chet".to_string());
   game.add("Pat".to_string());
   game.add("Sue".to_string());

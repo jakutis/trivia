@@ -1,4 +1,5 @@
 pub struct Game {
+  logg: Box<Fn(String) -> ()>,
   players: Vec<String>,
   places: [i32; 6],
   purses: [i32; 6],
@@ -12,9 +13,10 @@ pub struct Game {
   rock_questions: Vec<String>,
 }
 
-impl Default for Game {
-  fn default() -> Game {
+impl Game {
+  pub fn default(log: Box<Fn(String) -> ()>) -> Game {
     let mut game = Game {
+      logg: log,
       players: vec![],
       places: [0; 6],
       purses: [0; 6],
@@ -42,7 +44,7 @@ impl Default for Game {
 
 impl Game {
   fn log(&self, line: String) {
-    println!("{}", line);
+    (*self.logg)(line);
   }
 
   fn how_many_players(&self) -> usize {
