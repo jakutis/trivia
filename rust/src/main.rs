@@ -182,15 +182,21 @@ impl Game {
   }
 }
 
+use std::env;
+use rand::{StdRng, SeedableRng, Rng};
+
 fn main() {
+  let args: Vec<String> = env::args().collect();
+  let seed = args[1].parse::<usize>().unwrap();
+  let mut rng: StdRng = SeedableRng::from_seed(&[seed] as &[_]);
   let mut not_a_winner: bool = false;
   let mut game = Game::default();
   game.add("Chet".to_string());
   game.add("Pat".to_string());
   game.add("Sue".to_string());
   while {
-    game.roll(rand::random::<i32>() % 5 + 1);
-    if rand::random::<i32>() % 9 == 7 {
+    game.roll(rng.gen::<i32>() % 5 + 1);
+    if rng.gen::<i32>() % 9 == 7 {
       not_a_winner = game.wrong_answer();
     } else {
       not_a_winner = game.was_correctly_answered();
