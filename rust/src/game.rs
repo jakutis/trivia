@@ -45,10 +45,6 @@ impl Game {
     self.players.len()
   }
 
-  fn is_playable(&self) -> bool {
-    self.how_many_players() >= 2
-  }
-
   fn did_player_win(&self) -> bool {
     !(self.purses[self.current_player as usize] == 6)
   }

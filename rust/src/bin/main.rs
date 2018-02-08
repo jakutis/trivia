@@ -9,7 +9,7 @@ fn main() {
   let args: Vec<String> = env::args().collect();
   let seed = args[1].parse::<usize>().unwrap();
   let mut rng: StdRng = SeedableRng::from_seed(&[seed] as &[_]);
-  let mut not_a_winner: bool = false;
+  let mut not_a_winner: bool;
   let mut game = Game::default();
   game.add("Chet".to_string());
   game.add("Pat".to_string());
