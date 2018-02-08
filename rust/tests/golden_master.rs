@@ -8,15 +8,15 @@ use std::fs::File;
 use trivia::Execution;
 
 #[test]
-fn it_works() {
+fn golden_master() {
   let filename = "./tests/master.log";
   let f = File::open(filename).unwrap();
-  let mut reader = BufReader::new(f);
+  let reader = BufReader::new(f);
   for line in reader.lines() {
     let execution = serde_json::from_str::<Execution>(&line.unwrap()).unwrap();
     let expected_output = execution.output;
-    let stdout = Command::new("cargo")
-      .args(&["run", "--bin", "trivia", &format!("{}", &execution.seed)])
+    let stdout = Command::new("target/debug/trivia")
+      .arg(&format!("{}", &execution.seed))
       .output()
       .unwrap()
       .stdout;
