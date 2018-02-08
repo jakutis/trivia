@@ -2,5 +2,10 @@
 name = "trivia"
 version = "0.1.0"
 authors = ["Cengizhan Paşaoğlu <cengizhanpasaoglu@gmail.com>"]
+
 [dependencies]
-rand = "0.3.11"
+rand = "0.4"
+
+[[bin]]
+name = "trivia"
+path = "src/main.rs"
